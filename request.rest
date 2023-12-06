@@ -1,0 +1,30 @@
+###
+POST http://localhost:3000/tasks/addTask
+Content-Type: application/json
+
+{
+    "id": "1",
+    "nameOfTask": "Task 1"
+}
+
+###
+DELETE http://localhost:3000/tasks/deleteTask/1
+
+###
+### Get user tasks
+###
+
+GET http://localhost:3000/tasks/123/tasks
+###
+### Test 200 OK response and valid tasks
+###
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+###
+### Test specific task properties
+###
+
+{{JSONPATH response.body.[0] "$.taskName"}} === "Task Name"
+{{JSONPATH response.body.[0] "$.status"}} === "Completed"
